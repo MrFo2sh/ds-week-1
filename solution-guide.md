@@ -1,6 +1,76 @@
 # Solution Guide: Stack vs Heap Memory
 
-## 📊 The Big Picture
+## 📦 Step 1: Defining a Struct
+
+Before we can create users, we need to define what a `User` looks like.
+
+### Basic Struct Definition
+
+```c
+struct User {
+    int age;
+    char name[50];
+    double gpa;
+};
+```
+
+This creates a **blueprint** for a User with three fields:
+
+- `age` — integer (4 bytes)
+- `name` — character array of 50 chars (50 bytes)
+- `gpa` — double precision float (8 bytes)
+
+**Total size:** ~62 bytes (may vary due to padding)
+
+### Using the Struct
+
+**Without typedef:**
+
+```c
+struct User u1;  // Must use 'struct' keyword
+u1.age = 20;
+```
+
+**With typedef (cleaner):**
+
+```c
+typedef struct User {
+    int age;
+    char name[50];
+    double gpa;
+} User;
+
+// Now you can use just "User" instead of "struct User"
+User u1;  // Cleaner!
+u1.age = 20;
+```
+
+Or even cleaner:
+
+```c
+typedef struct {
+    int age;
+    char name[50];
+    double gpa;
+} User;
+```
+
+**In our program, we use:**
+
+```c
+typedef struct User
+{
+    int age;
+    char name[50];
+    double gpa;
+};
+```
+
+This defines the struct AND creates a typedef at the same time, so we can use both `struct User` and just `User`.
+
+---
+
+## The Big Picture
 
 In C, memory is divided into two main areas:
 
